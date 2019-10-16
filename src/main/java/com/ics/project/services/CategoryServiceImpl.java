@@ -27,4 +27,9 @@ public class CategoryServiceImpl implements CategoryService {
         Utils.print(id.toString());
         return categoryRepo.findById(id).orElseThrow(() -> ResourceNotFoundException.createWith(id, "Category"));
     }
+
+    @Override
+    public Category getCategoryByName(String category) {
+        return categoryRepo.findByNameContaining(category);
+    }
 }

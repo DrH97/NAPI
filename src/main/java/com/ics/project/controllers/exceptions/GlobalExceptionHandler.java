@@ -23,19 +23,19 @@ public class GlobalExceptionHandler {
         Utils.print(ex.toString());
 
         if (ex instanceof UserNotFoundException) {
-            Utils.print("User Not found");
+
             HttpStatus status = HttpStatus.NOT_FOUND;
             UserNotFoundException unfe = (UserNotFoundException) ex;
 
             return handleUserNotFoundException(unfe, headers, status, request);
         } else if (ex instanceof ResourceNotFoundException) {
-            Utils.print("Resource Not found");
+
             HttpStatus status = HttpStatus.NOT_FOUND;
             ResourceNotFoundException rnfe = (ResourceNotFoundException) ex;
 
             return handleResourceNotFoundException(rnfe, headers, status, request);
         } else if (ex instanceof ResourceExistsException) {
-            Utils.print("Resource Exists");
+
             HttpStatus status = HttpStatus.FOUND;
             ResourceExistsException ree = (ResourceExistsException) ex;
 

@@ -3,9 +3,7 @@ package com.ics.project.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "categories")
@@ -18,11 +16,8 @@ public class Category {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "categories")
     @JsonIgnore
-    @JoinTable(name = "movies_categories",
-            joinColumns = @JoinColumn(name = "category_id"),
-            inverseJoinColumns = @JoinColumn(name = "movie_id"))
     private List<Movie> movies;
 
     public Category() {

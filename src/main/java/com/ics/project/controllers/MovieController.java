@@ -4,9 +4,6 @@ import com.ics.project.controllers.exceptions.ResourceExistsException;
 import com.ics.project.controllers.exceptions.ResourceNotFoundException;
 import com.ics.project.models.Movie;
 import com.ics.project.services.MovieService;
-import com.ics.project.utils.MovieType;
-import com.ics.project.utils.Utils;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,7 +34,7 @@ public class MovieController {
     }
 
     @PostMapping(value = "{suggest}")
-    public ResponseEntity<Movie> suggestMovie(@RequestBody Movie movie) throws ResourceExistsException {
+    public ResponseEntity<Movie> suggestMovie(@RequestBody Movie movie) throws ResourceExistsException, ResourceNotFoundException {
         return ResponseEntity.ok(movieService.suggestMovie(movie));
     }
 }

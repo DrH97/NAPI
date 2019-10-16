@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ics.project.utils.MovieType;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,7 +20,10 @@ public class Movie {
     @Column(name = "description")
     private String description;
 
-    @ManyToMany(mappedBy = "movies")
+    @ManyToMany
+    @JoinTable(name = "movies_categories",
+            joinColumns = @JoinColumn(name = "category_id"),
+            inverseJoinColumns = @JoinColumn(name = "movie_id"))
     private List<Category> categories;
 
     @Column(name = "type")
@@ -48,6 +50,11 @@ public class Movie {
         this.categories = categories;
         this.movieType = movieType;
         this.user = user;
+    }
+
+    public Movie(String title, String description) {
+        this.title = title;
+        this.description = description;
     }
 
     public Long getId() {

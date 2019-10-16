@@ -10,4 +10,6 @@ public interface CategoryService {
 
     Category getCategoryById(Long id) throws ResourceNotFoundException;
 
+    Category getCategoryByName(String category);
+
 }

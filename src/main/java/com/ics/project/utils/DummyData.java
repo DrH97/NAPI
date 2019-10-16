@@ -43,7 +43,7 @@ public class DummyData implements CommandLineRunner {
                 new Category("sci-fi"),
                 new Category("thriller"),
                 new Category("fantasy")
-                );
+        );
 
         List<Category> savedCategories = categoryRepo.saveAll(categories);
 
