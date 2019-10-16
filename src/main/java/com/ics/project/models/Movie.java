@@ -1,7 +1,7 @@
 package com.ics.project.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ics.project.utils.MovieType;
+import com.ics.project.utils.Utils;
 
 import javax.persistence.*;
 import java.util.List;
@@ -30,11 +30,17 @@ public class Movie {
     private MovieType movieType;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "user_id")
     private User user;
 
     public Movie() {
+    }
+
+    public Movie(String title, String description, List<Category> categories, MovieType movieType) {
+        this.title = title;
+        this.description = description;
+        this.categories = categories;
+        this.movieType = movieType;
     }
 
     public Movie(String title, String description, List<Category> categories, User user) {
@@ -66,11 +72,11 @@ public class Movie {
     }
 
     public String getTitle() {
-        return title;
+        return Utils.titleCaseConversion(this.title);
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.title = title.toLowerCase();
     }
 
     public String getDescription() {
@@ -82,6 +88,7 @@ public class Movie {
     }
 
     public List<Category> getCategories() {
+//        return categories.stream().map(Category::getName).collect(Collectors.toList());
         return categories;
     }
 

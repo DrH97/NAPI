@@ -14,4 +14,6 @@ public interface MovieService {
     Movie suggestMovie(Movie movie) throws ResourceExistsException, ResourceNotFoundException;
 
     List<Movie> getMoviesByCategoryAndType(Long id, String movieType) throws ResourceNotFoundException;
+
+    String delete(Long id, String user) throws ResourceNotFoundException;
 }

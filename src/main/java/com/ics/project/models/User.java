@@ -26,9 +26,10 @@ public class User {
     private String name;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<Movie> suggestedMovies;
 
-    public User() {
+    private User() {
     }
 
     public User(String idNumber) {

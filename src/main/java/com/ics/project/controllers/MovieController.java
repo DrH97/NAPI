@@ -5,6 +5,7 @@ import com.ics.project.controllers.exceptions.ResourceNotFoundException;
 import com.ics.project.models.Movie;
 import com.ics.project.services.MovieService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,5 +37,10 @@ public class MovieController {
     @PostMapping(value = "{suggest}")
     public ResponseEntity<Movie> suggestMovie(@RequestBody Movie movie) throws ResourceExistsException, ResourceNotFoundException {
         return ResponseEntity.ok(movieService.suggestMovie(movie));
+    }
+
+    @DeleteMapping(value = "{id}")
+    public ResponseEntity<String> delete(@PathVariable(name = "id") Long id, @Nullable @RequestParam String user) throws ResourceNotFoundException {
+        return ResponseEntity.ok(movieService.delete(id, user));
     }
 }

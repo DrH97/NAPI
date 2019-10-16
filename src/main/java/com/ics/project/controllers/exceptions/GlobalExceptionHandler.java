@@ -16,7 +16,7 @@ import java.util.List;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-    @ExceptionHandler({ ResourceNotFoundException.class, UserNotFoundException.class, ResourceExistsException.class})
+    @ExceptionHandler({ResourceNotFoundException.class, UserNotFoundException.class, ResourceExistsException.class, UserExistsException.class})
     public final ResponseEntity<ApiError> handleException(Exception ex, WebRequest request) {
         HttpHeaders headers = new HttpHeaders();
 
@@ -40,8 +40,13 @@ public class GlobalExceptionHandler {
             ResourceExistsException ree = (ResourceExistsException) ex;
 
             return handleResourceExistsException(ree, headers, status, request);
-        }
-        else {
+        } else if (ex instanceof UserExistsException) {
+
+            HttpStatus status = HttpStatus.FOUND;
+            UserExistsException uee = (UserExistsException) ex;
+
+            return handleUserExistsException(uee, headers, status, request);
+        } else {
             HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
             return handleExceptionInternal(ex, null, headers, status, request);
         }
@@ -50,6 +55,11 @@ public class GlobalExceptionHandler {
     private ResponseEntity<ApiError> handleResourceExistsException(ResourceExistsException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         List<String> errors = Collections.singletonList(ex.getMessage());
         return handleExceptionInternal(ex, new MovieApiError(errors, ex.getMovie()), headers, status, request);
+    }
+
+    private ResponseEntity<ApiError> handleUserExistsException(UserExistsException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        List<String> errors = Collections.singletonList(ex.getMessage());
+        return handleExceptionInternal(ex, new ApiError(errors), headers, status, request);
     }
 
     private ResponseEntity<ApiError> handleResourceNotFoundException(ResourceNotFoundException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {

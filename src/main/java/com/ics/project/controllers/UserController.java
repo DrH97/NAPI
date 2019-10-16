@@ -1,12 +1,10 @@
 package com.ics.project.controllers;
 
-import com.ics.project.controllers.exceptions.GlobalExceptionHandler;
+import com.ics.project.controllers.exceptions.UserExistsException;
 import com.ics.project.controllers.exceptions.UserNotFoundException;
 import com.ics.project.models.User;
 import com.ics.project.services.UserService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -30,7 +28,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> create(@Valid @RequestBody User user) {
+    public ResponseEntity<User> create(@Valid @RequestBody User user) throws UserExistsException {
         return ResponseEntity.ok(userService.create(user));
     }
 
