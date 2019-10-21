@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Expose all movies endpoints and route them accordingly
+ *
+ * @author Dr H
+ */
 @RestController
 @RequestMapping("movies")
 public class MovieController {

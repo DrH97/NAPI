@@ -14,6 +14,11 @@ import org.springframework.web.util.WebUtils;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Catch all errors that are thrown by the API at runtime and handle them accordingly
+ *
+ * @author Dr H
+ */
 @ControllerAdvice
 public class GlobalExceptionHandler {
     @ExceptionHandler({ResourceNotFoundException.class, UserNotFoundException.class, ResourceExistsException.class, UserExistsException.class})

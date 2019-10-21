@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * @author Dr H
+ */
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
@@ -17,17 +20,33 @@ public class CategoryServiceImpl implements CategoryService {
         this.categoryRepo = categoryRepo;
     }
 
+    /**
+     * Find all existing categories
+     *
+     * @return List of categories
+     */
     @Override
     public List<Category> getAllCategories() {
         return categoryRepo.findAll();
     }
 
+    /**
+     * Find category by its ID
+     * @param id Long
+     * @return category
+     * @throws ResourceNotFoundException if not found
+     */
     @Override
     public Category getCategoryById(Long id) throws ResourceNotFoundException {
         Utils.print(id.toString());
         return categoryRepo.findById(id).orElseThrow(() -> ResourceNotFoundException.createWith(id, "Category"));
     }
 
+    /**
+     * Find category by its name instead
+     * @param category String
+     * @return category
+     */
     @Override
     public Category getCategoryByName(String category) {
         return categoryRepo.findByNameContaining(category);

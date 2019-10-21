@@ -8,6 +8,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
+/**
+ * @author Dr H
+ */
 public interface MovieRepository extends JpaRepository<Movie, Long> {
     Movie findByTitleOrTitleAndDescriptionContaining(String title, String title2, String description);
 

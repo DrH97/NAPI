@@ -6,6 +6,9 @@ import com.ics.project.models.User;
 
 import java.util.List;
 
+/**
+ * @author Dr H
+ */
 public interface UserService {
     User create(User user) throws UserExistsException;
 

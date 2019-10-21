@@ -4,6 +4,11 @@ import com.ics.project.models.Movie;
 
 import java.util.List;
 
+/**
+ * Subclass of ApiError class that handles specific error to do with existing movie
+ *
+ * @author Dr H
+ */
 public class MovieApiError extends ApiError {
     private Movie existingMovie;
 

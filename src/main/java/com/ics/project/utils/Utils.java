@@ -6,14 +6,29 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
+/**
+ * @author Dr H
+ */
 public class Utils {
 
+    /**
+     * Method to get N number of random categories from a list of categories
+     *
+     * @param categories
+     * @param items
+     * @return list of categories
+     */
     static List<Category> getRandomCategories(List<Category> categories, int items) {
         Collections.shuffle(categories);
 
         return categories.subList(0, items);
     }
 
+    /**
+     * Custom system println function that takes variable number of messages
+     * @param message
+     * @param extras
+     */
     public static void print(String message, String ...extras) {
         System.out.println(message);
 
@@ -22,8 +37,13 @@ public class Utils {
         }
     }
 
+    /**
+     * Convert any string to a title cased string
+     * @param inputString
+     * @return title cased String
+     */
     public static String titleCaseConversion(String inputString) {
-        if (inputString.isBlank()) {
+        if (inputString.isEmpty()) {
             return "";
         }
 

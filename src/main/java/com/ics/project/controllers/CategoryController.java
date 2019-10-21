@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * Expose all categories endpoints and route them accordingly
+ *
+ * @author Dr H
+ */
 @RestController
 @RequestMapping("categories")
 public class CategoryController {

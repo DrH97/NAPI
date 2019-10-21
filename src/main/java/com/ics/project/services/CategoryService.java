@@ -5,6 +5,9 @@ import com.ics.project.models.Category;
 
 import java.util.List;
 
+/**
+ * @author Dr H
+ */
 public interface CategoryService {
     List<Category> getAllCategories();
 

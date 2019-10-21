@@ -1,13 +1,21 @@
 package com.ics.project.utils;
 
+import com.ics.project.models.Category;
 import com.ics.project.repositories.CategoryRepository;
 import com.ics.project.repositories.MovieRepository;
 import com.ics.project.repositories.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
+/**
+ * Seed the system with data on startup
+ *
+ * @author Dr H
+ */
 @Component
 public class DummyData implements CommandLineRunner {
 
@@ -32,14 +40,14 @@ public class DummyData implements CommandLineRunner {
 //
 //        List<User> savedUsers = userRepo.saveAll(users);
 //
-//        List<Category> categories = Arrays.asList(
-//                new Category("adventure"),
-//                new Category("sci-fi"),
-//                new Category("thriller"),
-//                new Category("fantasy")
-//        );
-//
-//        List<Category> savedCategories = categoryRepo.saveAll(categories);
+        List<Category> categories = Arrays.asList(
+                new Category("adventure"),
+                new Category("sci-fi"),
+                new Category("thriller"),
+                new Category("fantasy")
+        );
+
+        List<Category> savedCategories = categoryRepo.saveAll(categories);
 //
 //        List<Movie> movies = new ArrayList<>();
 //        movies.add(new Movie("Jumanji", "A jungle in the wilderness", Utils.getRandomCategories(categories, 1), MovieType.ORIGINAL));

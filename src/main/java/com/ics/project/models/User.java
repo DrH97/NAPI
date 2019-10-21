@@ -7,6 +7,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
 
+/**
+ * @author Dr H
+ */
 @Entity
 @Table(name = "users")
 public class User {

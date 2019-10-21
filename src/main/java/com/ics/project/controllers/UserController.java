@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+/**
+ * Expose all users endpoints and route them accordingly
+ *
+ * @author Dr H
+ */
 @RestController
 @RequestMapping(value = "users")
 public class UserController {

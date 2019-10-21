@@ -6,6 +6,9 @@ import com.ics.project.models.Movie;
 
 import java.util.List;
 
+/**
+ * @author Dr H
+ */
 public interface MovieService {
     List<Movie> getAllMovies();
 

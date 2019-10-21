@@ -6,6 +6,9 @@ import com.ics.project.utils.Utils;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * @author Dr H
+ */
 @Entity
 @Table(name = "movies")
 public class Movie {

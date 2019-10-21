@@ -26,17 +26,35 @@ public class MovieServiceImpl implements MovieService {
         this.userService = userService;
     }
 
+    /**
+     * Find all existing movies
+     *
+     * @return List of movies
+     */
     @Override
     public List<Movie> getAllMovies() {
         List<Movie> movies = movieRepo.findAll();
         return movieRepo.findAll();
     }
 
+    /**
+     * Find movie by ID
+     * @param id Long
+     * @return movie
+     * @throws ResourceNotFoundException if no movie found
+     */
     @Override
     public Movie getMovieById(Long id) throws ResourceNotFoundException {
         return movieRepo.findById(id).orElseThrow(() -> ResourceNotFoundException.createWith(id, "Movie"));
     }
 
+    /**
+     * Suggest movie by a user
+     * @param movie Movie
+     * @return movie
+     * @throws ResourceExistsException if suggested movie already exists
+     * @throws ResourceNotFoundException if the user is not provided or found.
+     */
     @Override
     public Movie suggestMovie(Movie movie) throws ResourceExistsException, ResourceNotFoundException {
 
@@ -78,6 +96,13 @@ public class MovieServiceImpl implements MovieService {
         throw ResourceExistsException.createWith(existingMovie);
     }
 
+    /**
+     * Find movies by category and type
+     * @param id of category
+     * @param type of movie as MovieType
+     * @return List of movies
+     * @throws ResourceNotFoundException if provided movie type is not found.
+     */
     @Override
     public List<Movie> getMoviesByCategoryAndType(Long id, String type) throws ResourceNotFoundException {
         MovieType movieType;
@@ -91,6 +116,13 @@ public class MovieServiceImpl implements MovieService {
         return movieRepo.findMoviesByCategoriesAndMovieType(categoryService.getCategoryById(id), movieType);
     }
 
+    /**
+     * Delete a movie by a user
+     * @param id of movie to delete
+     * @param user the user performing the deletion
+     * @return String specifying result of deletion
+     * @throws ResourceNotFoundException if user provided does not exist, or is not the owner of the movie, or the movie does not exist
+     */
     @Override
     public String delete(Long id, String user) throws ResourceNotFoundException {
         if (user == null || user.isEmpty()) {
